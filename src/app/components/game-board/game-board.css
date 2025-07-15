@@ -1,3 +1,11 @@
+.game-board-container {
+
+  height: 100vh;
+  background: #f6f2dd;
+  width: 100vw;
+  margin: 0 auto;
+}
+
 .game-board {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -6,7 +14,7 @@
   width: 620px; /* 3 * 200px cells + 2 * 8px gap */
   height: 620px;
   margin: 0 auto;
-  background: #eee;
+  background: #f6dddd;
   border-radius: 12px;
   padding: 12px;
   box-sizing: border-box;

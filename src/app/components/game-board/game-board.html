@@ -1,14 +1,25 @@
 <!-- In game-board.html -->
-<app-game-status class="game-status" [currentPlayer]="currentPlayer" [winner]="winner" [isDraw]="isDraw" [gameOver]="gameOver" (onRestartGameClicked)="onRestartGameClicked()"></app-game-status>
-<div class="game-board-grid">
-
-  @for (row of board; track $index; let rowIndex = $index) {
-  <div class="row">
-    @for (cell of row; track $index; let colIndex = $index) {
-    <app-cell [value]="cell" (CellClicked)="onCellClicked(rowIndex, colIndex)" [gameOver]="gameOver">
-    </app-cell>
+<div class="game-board-container">
+  <app-game-status
+    class="game-status"
+    [currentPlayer]="currentPlayer"
+    [winner]="winner"
+    [isDraw]="isDraw"
+    [gameOver]="gameOver"
+    (onRestartGameClicked)="onRestartGameClicked()"
+  ></app-game-status>
+  <div class="game-board-grid">
+    @for (row of board; track $index; let rowIndex = $index) {
+    <div class="row">
+      @for (cell of row; track $index; let colIndex = $index) {
+      <app-cell
+        [value]="cell"
+        (CellClicked)="onCellClicked(rowIndex, colIndex)"
+        [gameOver]="gameOver"
+      >
+      </app-cell>
+      }
+    </div>
     }
   </div>
-  }
-
 </div>
