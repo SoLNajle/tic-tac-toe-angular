@@ -1,0 +1,14 @@
+<!-- In game-board.html -->
+<app-game-status class="game-status"></app-game-status>
+<div class="game-board-grid">
+  <p>Current Player: {{ currentPlayer }}</p>
+  @for (row of board; track $index; let rowIndex = $index) {
+  <div class="row">
+    @for (cell of row; track $index; let colIndex = $index) {
+    <app-cell [value]="cell" (CellClicked)="onCellClicked(rowIndex, colIndex)">
+    </app-cell>
+    }
+  </div>
+  }
+
+</div>

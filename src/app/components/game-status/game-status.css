@@ -1,0 +1,7 @@
+.game-status {
+  position: relative; /* Change from absolute */
+  /* Remove top, right positioning */
+  background: red; /* Make it obvious */
+  padding: 10px;
+  margin: 10px;
+}

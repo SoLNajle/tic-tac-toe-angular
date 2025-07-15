@@ -1,0 +1,13 @@
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+  width: 620px; /* 3 * 200px cells + 2 * 8px gap */
+  height: 620px;
+  margin: 0 auto;
+  background: #eee;
+  border-radius: 12px;
+  padding: 12px;
+  box-sizing: border-box;
+}

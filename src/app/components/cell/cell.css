@@ -1,0 +1,23 @@
+.cell {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  aspect-ratio: 1 / 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  /* Optional: remove default button styles for consistency */
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 0;
+  cursor: pointer;
+  font-size: 240px;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  line-height: 1;
+  vertical-align: middle;
+  text-align: center;
+  text-align: center;
+}
