@@ -1,11 +1,11 @@
 <!-- In game-status.html -->
 <div class="game-status centered-div">
-  <h2 class="game-status-title">GAME STATUS</h2>
+  <h2 class="game-status-title">TIC TAC TOE</h2>
 
   
   <p class="game-status-winner">
     @if (winner) {
-      Winner: <span [class]="winner === 'X' ? 'player-name-x' : 'playername-o'">{{ winner }}</span>
+      Winner 🏆 => <span [class]="winner === 'X' ? 'player-name-x' : 'playername-o'">{{ winner }}</span>
     } @else if (gameOver) {
        <span class="game-status-draw">Draw</span>
 

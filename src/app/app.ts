@@ -8,5 +8,5 @@ import { GameBoard } from './components/game-board/game-board';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('app-zero');
+  protected readonly title = signal('tic tac toe');
 }
