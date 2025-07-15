@@ -83,7 +83,7 @@ board = [
     // Check if there is a winner
     const winner = this.checkWinner();
     if (winner) {
-      this.winner = winner
+      this.winner = winner;
       this.gameOver = true;
       this.confettiService.triggerPlayerConfetti(winner);
       return;
