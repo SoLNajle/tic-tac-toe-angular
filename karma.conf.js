@@ -1,16 +1,12 @@
 module.exports = function(config) {
   config.set({
-    frameworks: ['mocha', 'chai'],
     files: [
-      'src/**/*.js',
-      'test/**/*.spec.js'
+      { pattern: 'src/**/*.spec.ts', watched: false }
     ],
-    browsers: ['Chrome'],
-    singleRun: true,
-    reporters: ['progress'],
-    port: 9876,
-    logLevel: config.LOG_INFO,
-    autoWatch: false,
-    concurrency: Infinity
+    preprocessors: {
+      'src/**/*.spec.ts': ['karma-typescript']
+    },
+    frameworks: ['jasmine', 'karma-typescript'],
+    reporters: ['progress', 'karma-typescript'],
   });
 };
