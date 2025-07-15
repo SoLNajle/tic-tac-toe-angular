@@ -10,6 +10,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class Cell {
   @Input() value: string = "O"; // Now it can receive data from parent
+  @Input() gameOver: boolean = false;
   @Output() CellClicked = new EventEmitter<void>(); // or EventEmitter<{row: number, col: number}>()
 
 

@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-game-status',
@@ -8,5 +9,9 @@ import { Component, Input } from '@angular/core';
   standalone: true,
 })
 export class GameStatus {
-
+  @Input() winner: string | null = null;
+  @Input() isDraw: boolean = false;
+  @Input() gameOver: boolean = false;
+  @Input() currentPlayer: string = '';
+  @Output() onRestartGameClicked = new EventEmitter<void>();
 }

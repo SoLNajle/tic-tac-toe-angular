@@ -1,5 +1,32 @@
 <!-- In game-status.html -->
-<div style="background: red; padding: 20px; margin: 10px;">
-    <h2>GAME STATUS TEST</h2>
-    <p>If you see this, the component is working!</p>
+<div class="game-status centered-div">
+  <h2 class="game-status-title">GAME STATUS</h2>
+
+  
+  <p class="game-status-winner">
+    @if (winner) {
+      Winner: <span [class]="winner === 'X' ? 'player-name-x' : 'playername-o'">{{ winner }}</span>
+    } @else if (gameOver) {
+       <span class="game-status-draw">Draw</span>
+
+    }
+    </p>
+  <p class="game-status-play">
+   @if (gameOver) {
+    <span class="game-status-game-over">Game Over</span>
+  } @else  {
+  <span class="game-status-game-ongoing">Game Ongoing</span>
+  }
+  </p>
+  <div class="game-status-row">
+    <button
+      class="game-status-restart-button"
+      (click)="onRestartGameClicked.emit()"
+    >
+      Restart Game
+    </button>
+    <div class="game-status-current-player">
+      Current Player:  <p [class]="currentPlayer === 'X' ? 'player-name-x' : 'player-name-o'">{{ currentPlayer }}</p>
+    </div>
+  </div>
 </div>

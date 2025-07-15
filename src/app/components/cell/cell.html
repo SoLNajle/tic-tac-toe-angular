@@ -1,4 +1,4 @@
 <button class="cell" (click)="onClick()"  
- [disabled]="value !== ''" 
+ [disabled]="value !== '' || gameOver" 
  [value]="value"> {{ value  }}
 </button>

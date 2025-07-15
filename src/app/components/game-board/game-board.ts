@@ -2,15 +2,18 @@ import { Component } from '@angular/core';
 import { Cell } from '../cell/cell';
 import { CommonModule } from '@angular/common';
 import { GameStatus } from '../game-status/game-status';
+import { ConfettiService } from '../../services/confetti';
 
 @Component({
   selector: 'app-game-board',
-  imports: [Cell, CommonModule, GameStatus],
+  imports: [Cell, CommonModule, GameStatus
+  ],
   templateUrl: './game-board.html',
   styleUrl: './game-board.css',
   standalone: true,
 })
 export class GameBoard {
+  constructor(private confettiService: ConfettiService) {}
   playerX: string = "X";
   playerO: string = "O";
   winner: string | null = null;
@@ -33,5 +36,57 @@ export class GameBoard {
       // Switch to the other player
       this.currentPlayer = this.currentPlayer === 'X' ? 'O' : 'X';
     }
+    this.checkGameStatus();
   }
+  checkWinner() {
+    // Check rows
+    for (let i = 0; i < 3; i++) {
+      if (this.board[i][0] === this.board[i][1] && this.board[i][1] === this.board[i][2] && this.board[i][0] !== '') {
+        return this.board[i][0];
+      }
+    }
+    // Check columns
+    for (let i = 0; i < 3; i++) {
+      if (this.board[0][i] === this.board[1][i] && this.board[1][i] === this.board[2][i] && this.board[0][i] !== '') {
+        return this.board[0][i];
+      }
+    }
+    // Check diagonals
+    if (this.board[0][0] === this.board[1][1] && this.board[1][1] === this.board[2][2] && this.board[0][0] !== '') {
+      return this.board[0][0];
+    }
+    if (this.board[0][2] === this.board[1][1] && this.board[1][1] === this.board[2][0] && this.board[0][2] !== '') {
+      return this.board[0][2];
+    }
+    return null;
+  }
+  checkGameStatus() {
+    // Check if there is a winner
+    const winner = this.checkWinner();
+    if (winner) {
+      this.winner = winner;
+      this.gameOver = true;
+      this.confettiService.triggerPlayerConfetti(winner);
+      return;
+    }
+    // Check for a draw
+    if (this.board.flat().every(cell => cell !== '')) {
+      this.isDraw = true;
+      this.gameOver = true;
+      return;
+    }
+
+  }
+  onRestartGameClicked() {
+    this.board = [
+      ["", "", ""],
+      ["", "", ""],
+      ["", "", ""]
+    ];
+    this.currentPlayer = this.playerX;
+    this.gameOver = false;
+    this.winner = null;
+    this.isDraw = false;
+  }
+ 
 }

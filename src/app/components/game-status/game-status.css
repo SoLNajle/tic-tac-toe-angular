@@ -1,7 +1,111 @@
 .game-status {
-  position: relative; /* Change from absolute */
+
+  min-height: 200px;
+  max-height: 200px;
   /* Remove top, right positioning */
-  background: red; /* Make it obvious */
-  padding: 10px;
-  margin: 10px;
+  background: rgb(203, 221, 245); 
+  border-radius: 10px;
+  padding: 50px;
+  margin: 20px;
+}
+
+.centered-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* Full viewport height */
+  width: 50%;
+  margin: 0 auto; /* Centers the div horizontally */
+  
+}
+.game-status-title {
+  font-size: 44px;
+  font-weight: bold;
+  color: #333;
+}
+
+.game-status-winner {
+  min-height: 70px;
+  font-size: 44px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+ 
+}
+.game-status-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  height: 100px;
+  margin-bottom: 0px;
+}
+.game-status-current-player {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  /* align to the left corner */
+  text-align: left;
+  margin-left: 0;
+}
+.game-status-restart-button {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 0;
+  width: 150px;
+  height: 30px;
+  background-color: #333;
+  color: rgb(203, 221, 245); 
+  border-radius: 5px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.game-status-current-player-name {
+  margin-left: 10px;
+  /* align to the left corner */
+}
+
+.player-name-x {
+  color: #ff6b6b;
+  margin-left: 10px;
+}
+
+.player-name-o {
+  margin-left: 10px;
+  color: #4ecdc4;
+}
+
+.game-status-play {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.game-status-game-over {
+  color: #ea0505;
+}
+
+.game-status-game-ongoing {
+  color: #14e322;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px #fff; }
+  50% { text-shadow: 0 0 20px currentColor, 0 0 30px #f0eeee; }
+  100% { text-shadow: 0 0 5px grey; }
+}
+.game-status-draw {
+  color: #e2f046;
+  text-shadow: 0 0 10px #333;
+  
 }
