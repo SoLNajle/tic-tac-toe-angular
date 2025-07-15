@@ -1,4 +1,8 @@
-<button class="cell" (click)="onClick()"  
- [disabled]="value !== '' || gameOver" 
- [value]="value"> {{ value  }}
+<button class="cell" (click)="onClick()" [disabled]="value !== '' || gameOver" [value]="value" (mouseover)="onHover()"
+    (mouseleave)="onMouseLeave()">
+    <span *ngIf="value !== ''">{{ value }}</span>
+    <span *ngIf="value === '' && hovered"
+        [ngClass]="{'hover-x': currentPlayer === 'X', 'hover-o': currentPlayer === 'O'}">
+        {{ currentPlayer }}
+    </span>
 </button>

@@ -13,8 +13,12 @@
     <div class="row">
       @for (cell of row; track $index; let colIndex = $index) {
       <app-cell
-        [value]="cell"
+        [value]="cell.value"
+        [hovered]="cell.hovered"
+        [currentPlayer]="currentPlayer"
         (CellClicked)="onCellClicked(rowIndex, colIndex)"
+        (CellHovered)="onCellHovered(rowIndex, colIndex)"
+        (CellMouseLeave)="onCellMouseLeave(rowIndex, colIndex)"
         [gameOver]="gameOver"
       >
       </app-cell>
