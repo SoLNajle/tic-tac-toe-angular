@@ -19,5 +19,13 @@
   line-height: 1;
   vertical-align: middle;
   text-align: center;
-  text-align: center;
+}
+
+.hover-x {
+  color: #ff6b6b;
+  opacity: 0.4;
+}
+.hover-o {
+  color: #4ecdc4;
+  opacity: 0.4;
 }
