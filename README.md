@@ -63,3 +63,4 @@ ng e2e
 * Game history
 * Nicer design
 * Winner animation
+* Hover cell animation
