@@ -10,7 +10,7 @@ describe('GameBoard', () => {
     await TestBed.configureTestingModule({
       imports: [GameBoard]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(GameBoard);
     component = fixture.componentInstance;
@@ -20,4 +20,30 @@ describe('GameBoard', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should reset all cells to empty and not hovered', () => {
+    // Fill the board with values and hovered true
+    component.board = [
+      [{ value: 'X', hovered: true }, { value: 'O', hovered: true }, { value: 'X', hovered: true }],
+      [{ value: 'O', hovered: true }, { value: 'X', hovered: true }, { value: 'O', hovered: true }],
+      [{ value: 'X', hovered: true }, { value: 'O', hovered: true }, { value: 'X', hovered: true }]
+    ];
+
+    component.restartBoard();
+
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 3; col++) {
+        expect(component.board[row][col].value).toBe('');
+        expect(component.board[row][col].hovered).toBeFalse();
+      }
+    }
+  });
+
+  it('should create a new board array instance', () => {
+    const oldBoard = component.board;
+    component.restartBoard();
+    expect(component.board).not.toBe(oldBoard);
+  });
 });
+
+
+
