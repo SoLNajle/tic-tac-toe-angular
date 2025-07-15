@@ -38,25 +38,43 @@ export class GameBoard {
     }
     this.checkGameStatus();
   }
-  checkWinner() {
-    // Check rows
+  checkWinnerbyRow() {
     for (let i = 0; i < 3; i++) {
       if (this.board[i][0] === this.board[i][1] && this.board[i][1] === this.board[i][2] && this.board[i][0] !== '') {
         return this.board[i][0];
       }
     }
-    // Check columns
+    return null;
+  }
+  checkWinnerbyColumn() {
     for (let i = 0; i < 3; i++) {
       if (this.board[0][i] === this.board[1][i] && this.board[1][i] === this.board[2][i] && this.board[0][i] !== '') {
         return this.board[0][i];
       }
     }
-    // Check diagonals
+    return null;
+  }
+  checkWinnerbyDiagonal() {
     if (this.board[0][0] === this.board[1][1] && this.board[1][1] === this.board[2][2] && this.board[0][0] !== '') {
       return this.board[0][0];
     }
-    if (this.board[0][2] === this.board[1][1] && this.board[1][1] === this.board[2][0] && this.board[0][2] !== '') {
-      return this.board[0][2];
+    return null;
+  }
+  checkWinner() {
+    // Check rows
+    const winnerByRow = this.checkWinnerbyRow();
+    if (winnerByRow) {
+      return winnerByRow;
+    }
+    // Check columns
+    const winnerByColumn = this.checkWinnerbyColumn();
+    if (winnerByColumn) {
+      return winnerByColumn;
+    }
+    // Check diagonals
+    const winnerByDiagonal = this.checkWinnerbyDiagonal();
+    if (winnerByDiagonal) {
+      return winnerByDiagonal;
     }
     return null;
   }
