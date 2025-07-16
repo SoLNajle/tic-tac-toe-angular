@@ -1,13 +1,52 @@
-
 .game-status {
-
+  width: 100vw;
   min-height: 200px;
-  max-height: 200px;
-  /* Remove top, right positioning */
   background: rgb(203, 221, 245); 
   border-radius: 10px;
-  padding: 50px;
-  margin: 20px;
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Row layout for status and restart button */
+.game-status-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  margin-top: 10px;
+  height: 100px;
+}
+
+/* Remove fixed margins, use flex for alignment */
+.game-status-current-player {
+  display: flex;
+  align-items: center;
+  font-size: 23px;
+  font-weight: bold;
+  color: #333;
+  text-align: left;
+  /* Remove margin-right */
+}
+
+.game-status-restart-button {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  width: 150px;
+  height: 40px;
+  background-color: #333;
+  color: rgb(203, 221, 245); 
+  border-radius: 5px;
+  border: 2px solid #fff;
+  cursor: pointer;
+  margin-top: 0;
+  /* Remove margin-left */
 }
 
 .centered-div {
@@ -15,15 +54,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 200px; /* Full viewport height */
-  width: 50%;
-  margin: 0 auto; /* Centers the div horizontally */
-  
+  width: 100vw;
+  margin: 0 auto;
 }
+
 .game-status-title {
   font-size: 44px;
   font-weight: bold;
   color: #333;
+  margin-bottom: 8px;
 }
 
 .game-status-winner {
@@ -32,46 +71,6 @@
   font-weight: bold;
   color: #333;
   margin: 0;
- 
-}
-.game-status-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: 10px;
-  height: 100px;
-  margin-bottom: 0px;
-}
-.game-status-current-player {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  /* align to the left corner */
-  text-align: left;
-  margin-left: 0;
-}
-.game-status-restart-button {
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  margin-right: 0;
-  width: 150px;
-  height: 30px;
-  background-color: #333;
-  color: rgb(203, 221, 245); 
-  border-radius: 5px;
-  border: 2px solid #fff;
-  cursor: pointer;
-  margin-top: 10px;
-}
-.game-status-current-player-name {
-  margin-left: 10px;
-  /* align to the left corner */
 }
 
 .player-name-x {
@@ -105,8 +104,8 @@
   50% { text-shadow: 0 0 20px currentColor, 0 0 30px #f0eeee; }
   100% { text-shadow: 0 0 5px grey; }
 }
+
 .game-status-draw {
   color: #e2f046;
   text-shadow: 0 0 10px #333;
-  
 }
