@@ -1,11 +1,10 @@
-<!-- In game-status.html -->
 <div class="game-status centered-div">
   <h2 class="game-status-title">TIC TAC TOE</h2>
 
   
   <p class="game-status-winner">
     @if (winner) {
-      Winner 🏆 => <span [class]="winner === 'X' ? 'player-name-x' : 'playername-o'">{{ winner }}</span>
+      Winner 🏆 => <span [class]="winner === 'X' ? 'player-name-x' : 'player-name-o'">{{ winner }}</span>
     } @else if (gameOver) {
        <span class="game-status-draw">Draw</span>
 
@@ -13,7 +12,7 @@
     </p>
   <p class="game-status-play">
    @if (gameOver) {
-    <span class="game-status-game-over">Game Over</span>
+    <span class="game-status-game-over">Game Over 💀</span>
   } @else  {
   <span class="game-status-game-ongoing">Game Ongoing</span>
   }
