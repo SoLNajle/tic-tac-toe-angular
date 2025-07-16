@@ -1,0 +1,68 @@
+.scoreboard {
+    border: 2px solid #000;
+    padding: 10px;
+
+}
+
+.scoreboard-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.scoreboard-player {
+    font-size: 18px;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.scoreboard-player-x {
+    color: #ff6b6b;
+}
+
+.scoreboard-player-y {
+    color: #4ecdc4;
+}
+
+.scoreboard-player-total {
+    font-weight: bold;
+    color: #000
+}
+
+
+.scoreboard-draws {
+    font-size: 18px;
+    margin-top: 15px 0;
+    font-weight: bold;
+    color: #888;
+}
+
+.scoreboard-restart-button {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 0;
+    width: 150px;
+    height: 30px;
+    background-color: #333;
+    color: #eee;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.game-status-restart-button {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-right: 0;
+    width: 150px;
+    height: 30px;
+    background-color: #333;
+    color: rgb(203, 221, 245);
+    border-radius: 5px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    margin-top: 10px;
+}

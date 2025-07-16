@@ -1,4 +1,4 @@
-.game-board-container {
+.game-board-status {
 
   height: 100vh;
   background: #f6f2dd;
@@ -32,4 +32,8 @@
   border-radius: 12px;
   padding: 12px;
   box-sizing: border-box;
+}
+.game-board-game {
+  display: flex;
+  flex-direction: row;
 }

@@ -3,10 +3,11 @@ import { Cell } from '../cell/cell';
 import { CommonModule } from '@angular/common';
 import { GameStatus } from '../game-status/game-status';
 import { ConfettiService } from '../../services/confetti';
+import { Scoreboard } from '../scoreboard/scoreboard';
 
 @Component({
   selector: 'app-game-board',
-  imports: [Cell, CommonModule, GameStatus
+  imports: [Cell, CommonModule, GameStatus , Scoreboard   
   ],
   templateUrl: './game-board.html',
   styleUrl: './game-board.css',
