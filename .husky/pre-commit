@@ -1,1 +1,2 @@
 npx lint-staged
+ng test --watch=false --browsers=ChromeHeadless --code-coverage
