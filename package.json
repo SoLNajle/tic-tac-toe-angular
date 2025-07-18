@@ -53,5 +53,12 @@
     "lint-staged": "^16.1.2",
     "typescript": "~5.8.2",
     "typescript-eslint": "8.34.1"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix",
+    "*.js": "eslint --fix",
+    "*.html": "prettier --write",
+    "*.css": "prettier --write",
+    "*.json": "prettier --write"
   }
 }
