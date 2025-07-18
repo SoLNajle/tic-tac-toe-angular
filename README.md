@@ -50,6 +50,23 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ng test
 ```
 
+## Code Quality & Linting
+
+This project uses ESLint to enforce code quality and maintain consistent coding standards. To run the linter:
+
+```bash
+ng lint
+```
+
+The ESLint configuration includes:
+- Angular-specific rules and best practices
+- TypeScript linting
+- HTML template linting
+- Accessibility checks
+- Code style enforcement
+
+All linting rules must pass before code can be merged.
+
 ## Running end-to-end tests
 
 For end-to-end (e2e) testing, run:
