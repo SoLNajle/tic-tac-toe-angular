@@ -8,9 +8,9 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
   standalone: true,
 })
 export class Scoreboard {
-  @Input() playerXWins: number = 0;
-  @Input() playerOWins: number = 0;
-  @Input() draws: number = 0;
+  @Input() playerXWins = 0;
+  @Input() playerOWins = 0;
+  @Input() draws = 0;
   @Output() restartMatchClicked = new EventEmitter<void>();
 
   onRestartMatchClicked() {

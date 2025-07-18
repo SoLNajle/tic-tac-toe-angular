@@ -1,7 +1,7 @@
 <div class="game-board-page">
   <div class="game-board-status">
     <app-game-status class="game-status" [currentPlayer]="currentPlayer" [winner]="winner" [isDraw]="isDraw"
-      [gameOver]="gameOver" (onRestartGameClicked)="onRestartGameClicked()"></app-game-status>
+      [gameOver]="gameOver" (restartGameClicked)="onRestartGameClicked()"></app-game-status>
   </div>
   <div class="game-board-game">
     <div class="game-board-grid">
