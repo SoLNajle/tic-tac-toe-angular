@@ -72,6 +72,9 @@ export class GameBoard {
     if (this.board[0][0].value === this.board[1][1].value && this.board[1][1].value === this.board[2][2].value && this.board[0][0].value !== '') {
       return this.board[0][0].value;
     }
+    if (this.board[0][2].value === this.board[1][1].value && this.board[1][1].value === this.board[2][0].value && this.board[0][2].value !== '') {
+      return this.board[0][2].value;
+    }
     return null;
   }
   checkWinner() {
