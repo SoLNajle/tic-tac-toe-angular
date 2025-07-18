@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Cell } from '../cell/cell';
 import { CommonModule } from '@angular/common';
 import { GameStatus } from '../game-status/game-status';
-import { ConfettiService } from '../../services/confetti';
+import { ConfettiService } from '../../services/confetti.service';
 import { Scoreboard } from '../scoreboard/scoreboard';
 import { ScoreboardModel } from '../../models/scoreboard.model';
 import { ScoreboardService } from '../../services/scoreboard.service';
@@ -17,12 +17,11 @@ import { BoardModel } from '../../models/board.model';
   standalone: true,
 })
 export class GameBoard {
+  private confettiService = inject(ConfettiService);
+  private scoreboardService = inject(ScoreboardService);
+  private gameLogicService = inject(GameLogicService);
 
-  constructor(
-    private confettiService: ConfettiService,
-    private scoreboardService: ScoreboardService,
-    private gameLogicService: GameLogicService
-  ) {
+  constructor() {
     this.scoreboard = this.scoreboardService.load();
   }
   playerX = "X";
