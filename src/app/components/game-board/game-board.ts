@@ -140,7 +140,6 @@ export class GameBoard {
 
   onPlayerXWins() {
     this.scoreboard.playerXWins++;
-
   }
 
   onPlayerOWins() {
