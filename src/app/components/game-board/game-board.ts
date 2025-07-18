@@ -5,17 +5,19 @@ import { GameStatus } from '../game-status/game-status';
 import { ConfettiService } from '../../services/confetti';
 import { Scoreboard } from '../scoreboard/scoreboard';
 import { Scoreboard as ScoreboardModel } from '../../models/scoreboard.model';
+import { ScoreboardService } from '../../services/scoreboard.service';
 
 @Component({
   selector: 'app-game-board',
-  imports: [Cell, CommonModule, GameStatus, Scoreboard
+  imports: [Cell, CommonModule, GameStatus, Scoreboard,
   ],
   templateUrl: './game-board.html',
   styleUrl: './game-board.css',
   standalone: true,
 })
 export class GameBoard {
-  constructor(private confettiService: ConfettiService) {
+  constructor(private confettiService: ConfettiService, private scoreboardService: ScoreboardService) {
+    this.scoreboard = this.scoreboardService.load();
   }
   playerX: string = "X";
   playerO: string = "O";
@@ -113,6 +115,7 @@ export class GameBoard {
     } else if (winner === this.playerO) {
       this.onPlayerOWins();
     }
+    this.scoreboardService.save(this.scoreboard);
   }
 
   restartBoard() {
@@ -124,6 +127,11 @@ export class GameBoard {
   }
 
   onRestartMatchClicked() {
+    this.restartScoreboard();
+    this.scoreboardService.reset();
+  }
+
+  restartScoreboard() {
     this.scoreboard.playerXWins = 0;
     this.scoreboard.playerOWins = 0;
     this.scoreboard.draws = 0;
