@@ -10,8 +10,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class GameStatus {
   @Input() winner: string | null = null;
-  @Input() isDraw: boolean = false;
-  @Input() gameOver: boolean = false;
-  @Input() currentPlayer: string = '';
-  @Output() onRestartGameClicked = new EventEmitter<void>();
+  @Input() isDraw = false;
+  @Input() gameOver = false;
+  @Input() currentPlayer = '';
+  @Output() restartGameClicked = new EventEmitter<void>();
 }

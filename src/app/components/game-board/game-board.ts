@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Cell } from '../cell/cell';
 import { CommonModule } from '@angular/common';
 import { GameStatus } from '../game-status/game-status';
@@ -16,14 +16,17 @@ import { ScoreboardService } from '../../services/scoreboard.service';
   standalone: true,
 })
 export class GameBoard {
-  constructor(private confettiService: ConfettiService, private scoreboardService: ScoreboardService) {
+  private confettiService = inject(ConfettiService);
+  private scoreboardService = inject(ScoreboardService);
+  
+  constructor() {
     this.scoreboard = this.scoreboardService.load();
   }
-  playerX: string = "X";
-  playerO: string = "O";
+  playerX = "X";
+  playerO = "O";
   winner: string | null = null;
-  isDraw: boolean = false;
-  gameOver: boolean = false;
+  isDraw = false;
+  gameOver = false;
   currentPlayer: string = this.playerX;
   scoreboard: ScoreboardModel = {
     playerXWins: 0,
