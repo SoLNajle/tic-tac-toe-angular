@@ -104,6 +104,7 @@ export class GameBoard {
       this.isDraw = true;
       this.gameOver = true;
       this.onDraw();
+      this.scoreboardService.save(this.scoreboard);
       return;
     }
 
