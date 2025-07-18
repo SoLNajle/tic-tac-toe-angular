@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { GameStatus } from '../game-status/game-status';
 import { ConfettiService } from '../../services/confetti';
 import { Scoreboard } from '../scoreboard/scoreboard';
-import { Scoreboard as ScoreboardModel } from '../../models/scoreboard.model';
+import { ScoreboardModel } from '../../models/scoreboard.model';
 import { ScoreboardService } from '../../services/scoreboard.service';
-
+import { GameLogicService } from '../../services/game-logic.service';
+import { BoardModel } from '../../models/board.model';
 @Component({
   selector: 'app-game-board',
   imports: [Cell, CommonModule, GameStatus, Scoreboard,
@@ -16,10 +17,12 @@ import { ScoreboardService } from '../../services/scoreboard.service';
   standalone: true,
 })
 export class GameBoard {
-  private confettiService = inject(ConfettiService);
-  private scoreboardService = inject(ScoreboardService);
-  
-  constructor() {
+
+  constructor(
+    private confettiService: ConfettiService,
+    private scoreboardService: ScoreboardService,
+    private gameLogicService: GameLogicService
+  ) {
     this.scoreboard = this.scoreboardService.load();
   }
   playerX = "X";
@@ -34,7 +37,7 @@ export class GameBoard {
     draws: 0
   };
 
-  board = [
+  board: BoardModel = [
     [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }],
     [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }],
     [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }]
@@ -52,49 +55,11 @@ export class GameBoard {
     }
     this.checkGameStatus();
   }
-  checkWinnerbyRow() {
-    for (let i = 0; i < 3; i++) {
-      if (this.board[i][0].value === this.board[i][1].value && this.board[i][1].value === this.board[i][2].value && this.board[i][0].value !== '') {
-        return this.board[i][0].value;
-      }
-    }
-    return null;
-  }
-  checkWinnerbyColumn() {
-    for (let i = 0; i < 3; i++) {
-      if (this.board[0][i].value === this.board[1][i].value && this.board[1][i].value === this.board[2][i].value && this.board[0][i].value !== '') {
-        return this.board[0][i].value;
-      }
-    }
-    return null;
-  }
-  checkWinnerbyDiagonal() {
-    if (this.board[0][0].value === this.board[1][1].value && this.board[1][1].value === this.board[2][2].value && this.board[0][0].value !== '') {
-      return this.board[0][0].value;
-    }
-    return null;
-  }
-  checkWinner() {
-    // Check rows
-    const winnerByRow = this.checkWinnerbyRow();
-    if (winnerByRow) {
-      return winnerByRow;
-    }
-    // Check columns
-    const winnerByColumn = this.checkWinnerbyColumn();
-    if (winnerByColumn) {
-      return winnerByColumn;
-    }
-    // Check diagonals
-    const winnerByDiagonal = this.checkWinnerbyDiagonal();
-    if (winnerByDiagonal) {
-      return winnerByDiagonal;
-    }
-    return null;
-  }
+
+
   checkGameStatus() {
     // Check if there is a winner
-    const winner = this.checkWinner();
+    const winner = this.gameLogicService.checkWinner(this.board);
     if (winner) {
       this.winner = winner;
       this.gameOver = true;
