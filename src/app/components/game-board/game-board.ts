@@ -158,7 +158,6 @@ export class GameBoard {
     this.isDraw = false;
   }
   onCellHovered(row: number, col: number) {
-    console.log(`Cell ${row}, ${col} hovered`);
     if (this.board[row][col].value === '' && !this.gameOver) {
       this.board[row][col].hovered = true;
     }
