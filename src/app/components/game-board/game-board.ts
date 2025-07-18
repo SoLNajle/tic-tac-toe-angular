@@ -10,8 +10,7 @@ import { GameLogicService } from '../../services/game-logic.service';
 import { BoardModel } from '../../models/board.model';
 @Component({
   selector: 'app-game-board',
-  imports: [Cell, CommonModule, GameStatus, Scoreboard,
-  ],
+  imports: [Cell, CommonModule, GameStatus, Scoreboard],
   templateUrl: './game-board.html',
   styleUrl: './game-board.css',
   standalone: true,
@@ -20,12 +19,13 @@ export class GameBoard {
   private confettiService = inject(ConfettiService);
   private scoreboardService = inject(ScoreboardService);
   private gameLogicService = inject(GameLogicService);
+  board: BoardModel = this.createEmptyBoard();
 
   constructor() {
     this.scoreboard = this.scoreboardService.load();
   }
-  playerX = "X";
-  playerO = "O";
+  playerX = 'X';
+  playerO = 'O';
   winner: string | null = null;
   isDraw = false;
   gameOver = false;
@@ -33,15 +33,28 @@ export class GameBoard {
   scoreboard: ScoreboardModel = {
     playerXWins: 0,
     playerOWins: 0,
-    draws: 0
+    draws: 0,
   };
 
-  board: BoardModel = [
-    [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }],
-    [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }],
-    [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }]
-  ];
-
+  private createEmptyBoard(): BoardModel {
+    return [
+      [
+        { value: '', hovered: false },
+        { value: '', hovered: false },
+        { value: '', hovered: false },
+      ],
+      [
+        { value: '', hovered: false },
+        { value: '', hovered: false },
+        { value: '', hovered: false },
+      ],
+      [
+        { value: '', hovered: false },
+        { value: '', hovered: false },
+        { value: '', hovered: false },
+      ],
+    ];
+  }
 
   onCellClicked(row: number, col: number) {
     // Check if cell is empty
@@ -55,7 +68,6 @@ export class GameBoard {
     this.checkGameStatus();
   }
 
-
   checkGameStatus() {
     // Check if there is a winner
     const winner = this.gameLogicService.checkWinner(this.board);
@@ -67,14 +79,13 @@ export class GameBoard {
       return;
     }
     // Check for a draw
-    if (this.board.flat().every(cell => cell.value !== '')) {
+    if (this.board.flat().every((cell) => cell.value !== '')) {
       this.isDraw = true;
       this.gameOver = true;
       this.onDraw();
       this.scoreboardService.save(this.scoreboard);
       return;
     }
-
   }
 
   updateScoreboard(winner: string) {
@@ -87,11 +98,7 @@ export class GameBoard {
   }
 
   restartBoard() {
-    this.board = [
-      [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }],
-      [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }],
-      [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }]
-    ];
+    this.board = this.createEmptyBoard();
   }
 
   onRestartMatchClicked() {
@@ -133,5 +140,4 @@ export class GameBoard {
   onCellMouseLeave(row: number, col: number) {
     this.board[row][col].hovered = false;
   }
-
 }
