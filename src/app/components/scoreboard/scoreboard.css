@@ -50,18 +50,3 @@
     cursor: pointer;
     margin-top: 10px;
 }
-
-.game-status-restart-button {
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    margin-right: 0;
-    width: 150px;
-    height: 30px;
-    background-color: #333;
-    color: rgb(203, 221, 245);
-    border-radius: 5px;
-    border: 2px solid #fff;
-    cursor: pointer;
-    margin-top: 10px;
-}
