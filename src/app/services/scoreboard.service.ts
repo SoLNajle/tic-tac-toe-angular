@@ -7,7 +7,12 @@ export class ScoreboardService {
     load(): Scoreboard {
         const scoreboardJson = localStorage.getItem(SCOREBOARD_KEY);
         if (scoreboardJson) {
-            return JSON.parse(scoreboardJson);
+            try {
+                return JSON.parse(scoreboardJson);
+            } catch (error) {
+                console.error("Failed to parse scoreboard JSON:", error);
+                return { playerXWins: 0, playerOWins: 0, draws: 0 };
+            }
         }
         return { playerXWins: 0, playerOWins: 0, draws: 0 };
     }
