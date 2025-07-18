@@ -17,7 +17,7 @@
       }
     </div>
     <div class="scoreboard">
-      <app-scoreboard></app-scoreboard>
+      <app-scoreboard [playerOWins]="scoreboard.playerOWins" [playerXWins]="scoreboard.playerXWins" [draws]="scoreboard.draws" (restartMatchClicked)="onRestartMatchClicked()"></app-scoreboard>
     </div>
   </div>
 </div>

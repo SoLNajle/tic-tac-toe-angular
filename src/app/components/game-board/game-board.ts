@@ -4,17 +4,18 @@ import { CommonModule } from '@angular/common';
 import { GameStatus } from '../game-status/game-status';
 import { ConfettiService } from '../../services/confetti';
 import { Scoreboard } from '../scoreboard/scoreboard';
+import { Scoreboard as ScoreboardModel } from '../../models/scoreboard.model';
 
 @Component({
   selector: 'app-game-board',
-  imports: [Cell, CommonModule, GameStatus , Scoreboard   
+  imports: [Cell, CommonModule, GameStatus, Scoreboard
   ],
   templateUrl: './game-board.html',
   styleUrl: './game-board.css',
   standalone: true,
 })
 export class GameBoard {
-  constructor(private confettiService: ConfettiService) { 
+  constructor(private confettiService: ConfettiService) {
   }
   playerX: string = "X";
   playerO: string = "O";
@@ -22,11 +23,17 @@ export class GameBoard {
   isDraw: boolean = false;
   gameOver: boolean = false;
   currentPlayer: string = this.playerX;
-board = [
-  [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }],
-  [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }],
-  [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }]
-];
+  scoreboard: ScoreboardModel = {
+    playerXWins: 0,
+    playerOWins: 0,
+    draws: 0
+  };
+
+  board = [
+    [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }],
+    [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }],
+    [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }]
+  ];
 
 
   onCellClicked(row: number, col: number) {
@@ -87,15 +94,25 @@ board = [
       this.winner = winner;
       this.gameOver = true;
       this.confettiService.triggerPlayerConfetti(winner);
+      this.updateScoreboard(winner);
       return;
     }
     // Check for a draw
     if (this.board.flat().every(cell => cell.value !== '')) {
       this.isDraw = true;
       this.gameOver = true;
+      this.onDraw();
       return;
     }
 
+  }
+
+  updateScoreboard(winner: string) {
+    if (winner === this.playerX) {
+      this.onPlayerXWins();
+    } else if (winner === this.playerO) {
+      this.onPlayerOWins();
+    }
   }
 
   restartBoard() {
@@ -105,6 +122,26 @@ board = [
       [{ value: '', hovered: false }, { value: '', hovered: false }, { value: '', hovered: false }]
     ];
   }
+
+  onRestartMatchClicked() {
+    this.scoreboard.playerXWins = 0;
+    this.scoreboard.playerOWins = 0;
+    this.scoreboard.draws = 0;
+  }
+
+  onPlayerXWins() {
+    this.scoreboard.playerXWins++;
+
+  }
+
+  onPlayerOWins() {
+    this.scoreboard.playerOWins++;
+  }
+
+  onDraw() {
+    this.scoreboard.draws++;
+  }
+
   onRestartGameClicked() {
     this.restartBoard();
     this.currentPlayer = this.playerX;
@@ -114,13 +151,13 @@ board = [
   }
   onCellHovered(row: number, col: number) {
     console.log(`Cell ${row}, ${col} hovered`);
-  if (this.board[row][col].value === '' && !this.gameOver) {
-    this.board[row][col].hovered = true;
+    if (this.board[row][col].value === '' && !this.gameOver) {
+      this.board[row][col].hovered = true;
+    }
   }
-}
 
-onCellMouseLeave(row: number, col: number) {
-  this.board[row][col].hovered = false;
-}
+  onCellMouseLeave(row: number, col: number) {
+    this.board[row][col].hovered = false;
+  }
 
 }
