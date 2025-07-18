@@ -1,17 +1,23 @@
-<!-- In game-board.html -->
-<div class="game-board-container">
-  <app-game-status class="game-status" [currentPlayer]="currentPlayer" [winner]="winner" [isDraw]="isDraw"
-    [gameOver]="gameOver" (onRestartGameClicked)="onRestartGameClicked()"></app-game-status>
-  <div class="game-board-grid">
-    @for (row of board; track $index; let rowIndex = $index) {
-    <div class="row">
-      @for (cell of row; track $index; let colIndex = $index) {
-      <app-cell [value]="cell.value" [hovered]="cell.hovered" [currentPlayer]="currentPlayer"
-        (CellClicked)="onCellClicked(rowIndex, colIndex)" (CellHovered)="onCellHovered(rowIndex, colIndex)"
-        (CellMouseLeave)="onCellMouseLeave(rowIndex, colIndex)" [gameOver]="gameOver">
-      </app-cell>
+<div class="game-board-page">
+  <div class="game-board-status">
+    <app-game-status class="game-status" [currentPlayer]="currentPlayer" [winner]="winner" [isDraw]="isDraw"
+      [gameOver]="gameOver" (onRestartGameClicked)="onRestartGameClicked()"></app-game-status>
+  </div>
+  <div class="game-board-game">
+    <div class="game-board-grid">
+      @for (row of board; track $index; let rowIndex = $index) {
+      <div class="row">
+        @for (cell of row; track $index; let colIndex = $index) {
+        <app-cell [value]="cell.value" [hovered]="cell.hovered" [currentPlayer]="currentPlayer"
+          (CellClicked)="onCellClicked(rowIndex, colIndex)" (CellHovered)="onCellHovered(rowIndex, colIndex)"
+          (CellMouseLeave)="onCellMouseLeave(rowIndex, colIndex)" [gameOver]="gameOver">
+        </app-cell>
+        }
+      </div>
       }
     </div>
-    }
+    <div class="scoreboard">
+      <app-scoreboard [playerOWins]="scoreboard.playerOWins" [playerXWins]="scoreboard.playerXWins" [draws]="scoreboard.draws" (restartMatchClicked)="onRestartMatchClicked()"></app-scoreboard>
+    </div>
   </div>
 </div>
